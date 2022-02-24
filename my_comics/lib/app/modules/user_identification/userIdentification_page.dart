@@ -1,3 +1,4 @@
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:my_comics/app/components/button_component.dart';
 import 'package:my_comics/app/components/input_component.dart';
@@ -45,19 +46,45 @@ class UserIdentificationPageState extends State<UserIdentificationPage> {
                   width: screen.width * .65,
                   child: InputComponent(
                     title: 'Your Name',
-                    onSubimit: (value) {},
-                    onChange: (value) {},
+                    onSubimit: (value) {
+                      store.userName = value;
+                      store.validateAndSavedUserName(context);
+                    },
+                    onChange: (value) {
+                      store.userName = value;
+                    },
                     textAction: TextInputAction.done,
                   ),
+                ),
+                const SizedBox(height: 5),
+                Observer(
+                  builder: (_) {
+                    return store.errorName!.isNotEmpty
+                        ? Text(
+                            '${store.errorName}',
+                            style: AppStyles.label,
+                          )
+                        : Container();
+                  },
                 ),
                 const SizedBox(height: 50),
                 SizedBox(
                   height: 56,
-                  child: ButtonComponent(
-                    title: const Icon(
-                      Icons.arrow_forward_ios_rounded,
-                    ),
-                    onPressed: () => {},
+                  child: Observer(
+                    builder: (_) {
+                      return ButtonComponent(
+                        title: store.isLoading
+                            ? const CircularProgressIndicator(
+                                color: AppColors.greyComics,
+                                strokeWidth: 1,
+                              )
+                            : const Icon(
+                                Icons.arrow_forward_ios_rounded,
+                              ),
+                        onPressed: () =>
+                            store.validateAndSavedUserName(context),
+                      );
+                    },
                   ),
                 )
               ],
