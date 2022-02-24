@@ -10,8 +10,6 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
-      title: 'Flutter Slidy',
-      theme: ThemeData(primarySwatch: Colors.blue),
     );
   }
 }
