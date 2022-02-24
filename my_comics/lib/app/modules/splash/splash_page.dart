@@ -14,6 +14,11 @@ class SplashPage extends StatefulWidget {
 class SplashPageState extends ModularState<SplashPage, SplashController> {
   @override
   Widget build(BuildContext context) {
+    Future.delayed(
+      const Duration(seconds: 3),
+      () async => await controller.isLogedVerify(),
+    );
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Center(
