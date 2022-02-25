@@ -56,17 +56,6 @@ class UserIdentificationPageState extends State<UserIdentificationPage> {
                     textAction: TextInputAction.done,
                   ),
                 ),
-                const SizedBox(height: 5),
-                Observer(
-                  builder: (_) {
-                    return store.errorName!.isNotEmpty
-                        ? Text(
-                            '${store.errorName}',
-                            style: AppStyles.label,
-                          )
-                        : Container();
-                  },
-                ),
                 const SizedBox(height: 50),
                 SizedBox(
                   height: 56,
