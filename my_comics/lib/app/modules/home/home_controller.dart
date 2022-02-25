@@ -13,7 +13,7 @@ abstract class _HomeControllerBase with Store {
   }
 
   @observable
-  ComicsModels? comics;
+  Comics? comics;
 
   @observable
   bool isLoading = false;
@@ -34,7 +34,7 @@ abstract class _HomeControllerBase with Store {
     }
 
     final jsondecode = jsonDecode(response.body);
-    comics = ComicsModels.fromJson(jsondecode);
+    comics = Comics.fromJson(jsondecode);
 
     isLoading = false;
   }
