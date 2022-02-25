@@ -10,7 +10,7 @@ class CardComponent extends StatelessWidget {
     this.onTap,
   }) : super(key: key);
 
-  final Comic? infos;
+  final Results? infos;
   final Function()? onTap;
 
   @override
