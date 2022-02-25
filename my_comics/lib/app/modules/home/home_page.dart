@@ -53,7 +53,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: SizedBox(
-          height: screen.height * .85,
+          height: screen.height * .80,
           child: Observer(
             builder: (_) {
               return controller.isLoading
@@ -73,12 +73,19 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                       : ListView.builder(
                           physics: const BouncingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: controller.comics?.data?.comics?.length,
+                          itemCount: controller.comics?.data?.results?.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
                               padding: const EdgeInsets.all(20),
                               child: CardComponent(
-                                infos: controller.comics?.data?.comics?[index],
+                                infos: controller.comics?.data?.results?[index],
+                                onTap: () async {
+                                  final result = await Modular.to.pushNamed(
+                                    '/detailsComics/',
+                                    arguments: controller
+                                        .comics?.data?.results?[index],
+                                  );
+                                },
                               ),
                             );
                           },
