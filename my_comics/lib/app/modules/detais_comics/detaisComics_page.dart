@@ -103,7 +103,11 @@ class DetaisComicsPageState extends State<DetaisComicsPage> {
                     "Adcionar no carrinho",
                     style: AppStyles.txButton,
                   ),
-                  onPressed: () {},
+                  onPressed: () => store.addItensInCart(
+                    widget.infos,
+                    '${widget.infos?.thumbnail?.path}.${widget.infos?.thumbnail?.extension}',
+                    ' ${widget.infos?.prices?.first.price}',
+                  ),
                 ),
               )
             ],
