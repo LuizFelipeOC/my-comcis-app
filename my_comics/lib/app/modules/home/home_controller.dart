@@ -4,6 +4,7 @@ import 'package:mobx/mobx.dart';
 import 'package:my_comics/app/database/database.dart';
 import 'package:my_comics/app/modules/home/models/comics_models.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 part 'home_controller.g.dart';
 
 class HomeController = _HomeControllerBase with _$HomeController;
@@ -12,6 +13,7 @@ abstract class _HomeControllerBase with Store {
   _HomeControllerBase() {
     getComics();
     countCart();
+    getUsername();
   }
 
   @observable
@@ -23,6 +25,16 @@ abstract class _HomeControllerBase with Store {
   @observable
   bool isLoading = false;
 
+  @observable
+  String? userName;
+
+  @action
+  getUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+    userName = prefs.getString('userName');
+  }
+
+  @action
   getComics() async {
     isLoading = true;
     final client = http.Client();
@@ -44,6 +56,7 @@ abstract class _HomeControllerBase with Store {
     isLoading = false;
   }
 
+  @action
   countCart() async {
     final database = await DatabaseHandler().initializeDB();
 
