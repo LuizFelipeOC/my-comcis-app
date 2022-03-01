@@ -26,9 +26,9 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         preferredSize: Size.fromHeight(screen.height * .20),
         child: SafeArea(
           child: SizedBox(
-            height: screen.height * .10,
+            height: screen.height * .15,
             child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+              margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -39,8 +39,19 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   IconButton(
                     color: AppColors.orangeComics,
                     iconSize: 30,
-                    icon: const Icon(
-                      Icons.shopping_cart_outlined,
+                    icon: Stack(
+                      children: [
+                        Container(
+                          alignment: Alignment.topRight,
+                          child: Text(
+                            controller.quantityCartsItems.toString(),
+                            style: AppStyles.txButton,
+                          ),
+                        ),
+                        const Icon(
+                          Icons.shopping_cart_outlined,
+                        ),
+                      ],
                     ),
                     onPressed: () {},
                   )
@@ -85,6 +96,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                     arguments: controller
                                         .comics?.data?.results?[index],
                                   );
+
+                                  if (result == true) {
+                                    controller.countCart();
+                                  }
                                 },
                               ),
                             );
