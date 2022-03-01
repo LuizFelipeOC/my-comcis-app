@@ -29,6 +29,6 @@ abstract class _DetaisComicsStoreBase with Store {
 
     await batch.commit(noResult: true);
 
-    Modular.to.pop();
+    Modular.to.pop(true);
   }
 }

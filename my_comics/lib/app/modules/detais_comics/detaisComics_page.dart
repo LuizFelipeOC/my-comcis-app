@@ -109,6 +109,16 @@ class DetaisComicsPageState extends State<DetaisComicsPage> {
                     ' ${widget.infos?.prices?.first.price}',
                   ),
                 ),
+              ),
+              Container(
+                width: screen.width,
+                child: TextButton(
+                  child: Text(
+                    'Voltar',
+                    style: AppStyles.title,
+                  ),
+                  onPressed: () => Modular.to.pop(true),
+                ),
               )
             ],
           ),

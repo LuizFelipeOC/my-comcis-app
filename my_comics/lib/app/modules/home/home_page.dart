@@ -28,7 +28,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           child: SizedBox(
             height: screen.height * .15,
             child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+              margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -37,21 +37,27 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                     style: AppStyles.title,
                   ),
                   IconButton(
-                    color: AppColors.orangeComics,
+                    color: AppColors.orangeComics.withOpacity(0.9),
                     iconSize: 30,
-                    icon: Stack(
-                      children: [
-                        Container(
-                          alignment: Alignment.topRight,
-                          child: Text(
-                            controller.quantityCartsItems.toString(),
-                            style: AppStyles.txButton,
+                    icon: SizedBox(
+                      child: Stack(
+                        alignment: Alignment.bottomRight,
+                        children: [
+                          const Icon(
+                            Icons.shopping_cart_outlined,
+                            size: 30,
                           ),
-                        ),
-                        const Icon(
-                          Icons.shopping_cart_outlined,
-                        ),
-                      ],
+                          const SizedBox(width: 10),
+                          Observer(
+                            builder: (_) {
+                              return Text(
+                                controller.quantityCartsItems.toString(),
+                                style: AppStyles.txButton,
+                              );
+                            },
+                          )
+                        ],
+                      ),
                     ),
                     onPressed: () {},
                   )
