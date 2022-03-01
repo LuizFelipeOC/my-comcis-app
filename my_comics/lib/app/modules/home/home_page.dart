@@ -59,7 +59,14 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                         ],
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      final result =
+                          await Modular.to.pushNamed('/cart_products/');
+
+                      if (result == true) {
+                        controller.countCart();
+                      }
+                    },
                   )
                 ],
               ),
